@@ -7,4 +7,4 @@ liu_us   <- nearby_stops(15.620, 58.400, api_key = api_key)
 platser <- c( "nobeltorget", "skarphagens c", "linköping centr", "falla")
 names(platser) <- platser
 
-hallplatser <- lapply(X = platser, FUN = place_lookup, api_key=api_key)
+hallplatser <- lapply(X = platser, FUN = location_lookup, api_key=api_key)
