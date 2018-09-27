@@ -10,7 +10,8 @@
 #' @references https://www.trafiklab.se/api/resrobot-reseplanerare/platsuppslag
 #' @export
 #'
-#' @examples head(location_lookup("Linköping Universitetet",api_key = api_key))
+#' 
+#@examples head(location_lookup("Linköping Universitetet"))
 location_lookup <- function(location, api_key, max_locations = 5L){
   # Error handling
   stopifnot(is.character(location) & nchar(location) > 0)

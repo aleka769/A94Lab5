@@ -8,12 +8,13 @@
 #'   accepted range is 1 - 50.
 #' @param api_key Key for the api.
 #'
-#' @return #' @return data.frame with stop-Id, extId, name, longitude and latitude (WGS84),
+#' @return data.frame with stop-Id, extId, name, longitude and latitude (WGS84),
 #'  weight (amount of trafic) and products (transportations available)
 #' @references https://www.trafiklab.se/api/resrobot-reseplanerare/narliggande-hallplatser
 #' @export
 #'
-#' @examples head(nearby_stops(16.017, 58.571, radius = 2000, api_key = api_key))
+#' 
+#@examples head(nearby_stops(16.017, 58.571, radius = 2000))
 nearby_stops <- function(longitude, latitude, api_key, radius = 1000, max_locations = 5L){
   # Eror handling
   stopifnot(is.numeric(longitude) & is.numeric(latitude))
