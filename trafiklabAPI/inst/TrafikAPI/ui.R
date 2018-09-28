@@ -11,7 +11,7 @@ library(shiny)
 
 ui <- fluidPage(
   
-  # App title ----
+  # App title
   titlePanel("Tabsets"),
   
   # Sidebar layout with input and output definitions ----
@@ -20,28 +20,33 @@ ui <- fluidPage(
     # Sidebar panel for inputs ----
     sidebarPanel(
       
+      # Longitude search, default is 15.6, can be changed in shiny app
       numericInput("lon", "longitude:", 15.6, min = -180, max = 180),
+      
+      # Latitude search, default is 58.41, can be changed in shiny app
       numericInput("lat", "latitude:", 58.41, min = -90, max = 90),
       
-      # Input: Slider for the number of observations to generate ----
-      sliderInput(inputId = "r",
-                  label = "Search radius",
-                  value = 500,
-                  min = 1,
-                  max = 9999)
+      # Search radius, default is 1000m, does not change zoom of map
+      numericInput("r", label = "Search radius", value = 1000, min = 100, max = 9999),
+      
+      # Slider for number of stops to search, default is 5.
+      sliderInput(inputId = "no_stops", label = "Number of stops to search",
+                  value = 5, min = 1, max = 15),
+      
+      # Adds an action button to trigger code chunks. Limits no of calls to API(!)
+      actionButton("act", "Update plot!")
       
     ),
     
-    # Main panel for displaying outputs ----
+    # Main panel for displaying outputs
     mainPanel(
       
-      # Output: Tabset w/ plot, summary, and table ----
+      # Output: Tabset w/ leaflet plot and info-table for stops
       tabsetPanel(type = "tabs",
                   tabPanel("Plot", leafletOutput("plot")),
                   p(),
                   tabPanel("Table", tableOutput("table"))
       )
-      
     )
   )
 )

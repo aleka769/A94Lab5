@@ -6,52 +6,43 @@
 # 
 #    http://shiny.rstudio.com/
 #
-Sys.setenv("MAPBOX" = "pk.eyJ1IjoibGFsdXNoIiwiYSI6ImNqbWI4aXZsYjAzYjYzd3Fta3BwaGdzYWQifQ.KHIChvzFKOXg--KmQexTTQ")
-load("X:/LABS/Advanced R/Lab5/A94Lab5/api_tests.RData")
 
 library(shiny)
 library(plotly)
 library(magrittr)
 library(leaflet)
 
-# df <- data.frame(longitude = runif(10, -97.365268, -97.356546), 
-#                  latitude = runif(10, 32.706071, 32.712210))
-# 
-# coordinates(df) <- ~longitude+latitude
-# 
-# leaflet(df) %>% addMarkers() %>% addTiles()
-
 # Define server logic required to draw a histogram
 server <- (function(input, output) {
   
-  
-  
-  Sys.setenv("MAPBOX" = "pk.eyJ1IjoibGFsdXNoIiwiYSI6ImNqbWI4aXZsYjAzYjYzd3Fta3BwaGdzYWQifQ.KHIChvzFKOXg--KmQexTTQ")  
-  output$plot <- renderLeaflet({
-    # liu_lkpg
-    icon.fa <- makeAwesomeIcon(icon = 'flag', 
-                               markerColor = 'red', iconColor = 'black')
+  # Waiting for the "update plot" button in shiny app
+  observeEvent(input$act, {
     
-    # coordinates(liu_lkpg) <- ~lon+lat 
-    leaflet(liu_lkpg) %>% 
-      addMarkers(lng = ~lon, lat = ~lat) %>% 
-      addAwesomeMarkers(lng = ~input$lon, lat = ~input$lat,
-                        icon = icon.fa) %>%
-      addTiles()
-    
-    # plot_geo(liu_lkpg) %>%
-    #   add_markers(x = ~lon, y = ~lat,
-    #               # text = ~paste("Hallplatsnamn:", ~name),
-    #               hoverinfo = "text") %>%
-    #   layout(geo = list(zoom = 10, center = list(lon = ~lon, lat = ~lat),
-    #                     scope = "Europe"),
-    #          title = "Number of mosquito detections in an 0.6x0.4 long/lat square")
-    
+    output$plot <- renderLeaflet({
+      
+      # Calling API, '<<-' is used so that table 'your_loc' appears in shiny app
+      your_loc <<- nearby_stops(longitude = input$lon, 
+                               latitude  = input$lat, 
+                               radius    = isolate(input$r), 
+                               api_key   = api_key,
+                               max_locations = isolate(input$no_stops))
+      
+      # Special icon for 'your location'
+      icon.fa <- makeAwesomeIcon(icon = 'flag', spin = TRUE, library = "fa",
+                                 markerColor = 'red', iconColor = 'black')
+      
+      # Draws map from 'your_loc' data.frame and adds special icon
+      leaflet(your_loc) %>% 
+        addMarkers(lng = ~lon, lat = ~lat) %>% 
+        addAwesomeMarkers(lng = ~input$lon, lat = ~input$lat,
+                          icon = icon.fa) %>%
+        addTiles()
+    })
   })
   
+  # Creates table in  shiny app
   output$table <- renderTable({
-    hallplatser$falla$r <- input$r
-    hallplatser$falla
+    your_loc
   })
   
 })
