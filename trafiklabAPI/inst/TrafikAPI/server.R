@@ -1,16 +1,22 @@
-#
-# This is the server logic of a Shiny web application. You can run the 
-# application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-# 
-#    http://shiny.rstudio.com/
-#
-
 library(shiny)
 library(plotly)
 library(magrittr)
 library(leaflet)
+
+# Hector icon, will appear at (lat, lon) specified in function input !!UNDER PROGRESS!!
+hecrodIcon <- makeIcon(
+  iconUrl = "https://github.com/aleka769/A94Lab5/blob/master/trafiklabAPI/img/hecrod.png",
+  iconWidth = 38, iconHeight = 95,
+  iconAnchorX = 22, iconAnchorY = 94
+)
+
+# Krzysztof icon, will appear at (lat, lon) specified in function input  !!UNDER PROGRESS!!
+krzbarIcon <- makeIcon(
+  iconUrl = "https://github.com/aleka769/A94Lab5/blob/master/trafiklabAPI/img/krzbar.png",
+  iconWidth = 38, iconHeight = 95,
+  iconAnchorX = 22, iconAnchorY = 94
+)
+
 
 # Define server logic required to draw a histogram
 server <- (function(input, output) {

@@ -1,23 +1,14 @@
-#
-# This is the user-interface definition of a Shiny web application. You can
-# run the application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-# 
-#    http://shiny.rstudio.com/
-#
-
 library(shiny)
 
 ui <- fluidPage(
   
-  # App title
-  titlePanel("Tabsets"),
+  # Sidebar title for shiny app
+  titlePanel("Bus stop options"),
   
-  # Sidebar layout with input and output definitions ----
+  # Sidebar layout with input and output definitions
   sidebarLayout(
     
-    # Sidebar panel for inputs ----
+    # Sidebar panel for inputs
     sidebarPanel(
       
       # Longitude search, default is 15.6, can be changed in shiny app
