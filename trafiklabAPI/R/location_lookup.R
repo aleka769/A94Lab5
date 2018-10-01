@@ -12,7 +12,7 @@
 #'
 #' 
 #@examples head(location_lookup("Linköping Universitetet"))
-location_lookup <- function(location, api_key, max_locations = 5L){
+location_lookup <- function(location, api_key=Sys.getenv("trafiklab_key"), max_locations = 5L){
   # Error handling
   stopifnot(is.character(location) & nchar(location) > 0)
   stopifnot(is.numeric(max_locations))

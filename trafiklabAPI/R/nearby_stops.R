@@ -15,7 +15,7 @@
 #'
 #' 
 #@examples head(nearby_stops(16.017, 58.571, radius = 2000))
-nearby_stops <- function(longitude, latitude, api_key, radius = 1000, max_locations = 5L){
+nearby_stops <- function(longitude, latitude, api_key=Sys.getenv("trafiklab_key"), radius = 1000, max_locations = 5L){
   # Eror handling
   stopifnot(is.numeric(longitude) & is.numeric(latitude))
   stopifnot(is.numeric(radius) & is.numeric(max_locations))
