@@ -27,9 +27,6 @@ data.frame with stop-Id, extId, name, longitude and latitude (WGS84),
 \description{
 Function for retrieving stops close to given coordinates
 }
-\examples{
-head(nearby_stops(16.017, 58.571, radius = 2000))
-}
 \references{
 https://www.trafiklab.se/api/resrobot-reseplanerare/narliggande-hallplatser
 }
