@@ -1,6 +1,7 @@
 # Define server logic required to draw a histogram
 server <- (function(input, output) {
   requireNamespace("leaflet")
+  requireNamespace("magrittr")
 
   # Waiting for the "update plot" button in shiny app
   observeEvent(input$act, {
@@ -15,15 +16,15 @@ server <- (function(input, output) {
                                               max_locations = isolate(input$no_stops))
       
       # Special icon for 'your location'
-      icon.fa <- makeAwesomeIcon(icon = 'flag', spin = FALSE, library = "fa",
+      icon.fa <- leaflet::makeAwesomeIcon(icon = 'flag', spin = FALSE, library = "fa",
                                  markerColor = 'red', iconColor = 'black')
       
       # Draws map from 'your_loc' data.frame and adds special icon
-      leaflet(your_loc) %>% 
-        addMarkers(lng = ~lon, lat = ~lat, label = ~paste0(name," - ",dist,"m")) %>% 
-        addAwesomeMarkers(lng = ~input$lon, lat = ~input$lat,
+      leaflet::leaflet(your_loc) %>% 
+        leaflet::addMarkers(lng = ~lon, lat = ~lat, label = ~paste0(name," - ",dist,"m")) %>% 
+        leaflet::addAwesomeMarkers(lng = ~input$lon, lat = ~input$lat,
                           icon = icon.fa) %>%
-        addTiles()
+        leaflet::addTiles()
     })
   })
   
