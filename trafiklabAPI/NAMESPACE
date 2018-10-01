@@ -2,3 +2,4 @@
 
 export(location_lookup)
 export(nearby_stops)
+export(nearby_stops_app)

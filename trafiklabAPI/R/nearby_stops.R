@@ -1,4 +1,4 @@
-#' Function for retrieving stops close to given coordinates
+#' @title Function for retrieving stops close to given coordinates
 #'
 #' @param longitude Longitude coordinate according to WGS84-system
 #' @param latitude Latitude coordinate according to WGS84-system

@@ -1,5 +1,3 @@
-library(shiny)
-
 ui <- fluidPage(
   
   # Sidebar title for shiny app
@@ -11,11 +9,11 @@ ui <- fluidPage(
     # Sidebar panel for inputs
     sidebarPanel(
       
-      # Longitude search, default is 15.6, can be changed in shiny app
-      numericInput("lon", "longitude:", 15.6, min = -180, max = 180),
+      # Longitude search, default is LiU can be changed in shiny app
+      numericInput("lon", "longitude:", 15.576, min = -180, max = 180),
       
-      # Latitude search, default is 58.41, can be changed in shiny app
-      numericInput("lat", "latitude:", 58.41, min = -90, max = 90),
+      # Latitude search, default is LiU, can be changed in shiny app
+      numericInput("lat", "latitude:", 58.398, min = -90, max = 90),
       
       # Search radius, default is 1000m, does not change zoom of map
       numericInput("r", label = "Search radius", value = 1000, min = 100, max = 9999),
