@@ -1,10 +1,11 @@
 # Define server logic required to draw a histogram
 server <- (function(input, output) {
+  requireNamespace("leaflet")
 
   # Waiting for the "update plot" button in shiny app
   observeEvent(input$act, {
     
-    output$plot <- renderLeaflet({
+    output$plot <- leaflet::renderLeaflet({
       
       # Calling API, '<<-' is used so that table 'your_loc' appears in shiny app
       your_loc <<- trafiklabAPI::nearby_stops(longitude = input$lon, 

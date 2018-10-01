@@ -1,3 +1,4 @@
+
 ui <- fluidPage(
   
   # Sidebar title for shiny app
@@ -32,7 +33,7 @@ ui <- fluidPage(
       
       # Output: Tabset w/ leaflet plot and info-table for stops
       tabsetPanel(type = "tabs",
-                  tabPanel("Plot", leafletOutput("plot")),
+                  tabPanel("Plot", leaflet::leafletOutput("plot")),
                   p(),
                   tabPanel("Table", tableOutput("table"))
       )
