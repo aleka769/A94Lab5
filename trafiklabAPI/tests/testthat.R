@@ -1,5 +1,5 @@
 
-test_that(desc = "Non-numeric input for latitude/longitude", {
+test_that(desc = "Non-numeric input for longitude/latitude", {
   code = expect_error(nearby_stops( 16.178,  "58.591", api_key = api_key))
   code = expect_error(nearby_stops("16.178",  58.591,  api_key = api_key))
   code = expect_error(nearby_stops("16.178", "58.591", api_key = api_key))
