@@ -1,0 +1,60 @@
+---
+title: "Intro to trafiklabAPI"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Intro to trafiklabAPI}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r, echo = FALSE, message = FALSE, warning=FALSE}
+knitr::opts_chunk$set(collapse = T, comment = "#>")
+```
+
+```{r, echo = FALSE, message = FALSE, warning=FALSE}
+library(trafiklabAPI)
+```
+
+`trafiklabAPI` allows you to search for nearby public transportation stops based on longitude and latitude coordinates through trafiklabAPI. Based on the functions inside this package you can do the following:
+
+* Specify your location in latitude and longitude coordinates and receive information about these stops in terms of names, distance to your location etc.
+
+* Search for names of stops with trafiklab's fuzzy match and receive suggestions for your search along with information about these stops.
+
+To make use of all the awesome features of `trafiklabAPI`-package and functions you'll need a unique (personal) API key, for more information about this key, visit trafiklab's [website](https://www.trafiklab.se/api).
+
+
+### `nearby_stops`: Searching for locations based on longitude and latitude
+
+Specifying all parameters in the model gives you more control over the output. Below is an example of how to run `nearby_stops` with default values for all parameters, except for `api_key`, which you'll need to apply for yourself!
+
+```{r, echo = TRUE, eval = FALSE, message = FALSE}
+# not run:
+nearby_stops(longitude     = 16.178, 
+             latitude      = 58.591, 
+             radius        = 1000,
+             api_key       = your_unique_key,
+             max_locations = 5L)
+```
+
+The function automatically adjusts `radius` outside interval [50, 9999] meters and `max_locations` outside interval [1, 50] stops. 
+
+### `location_lookup`: Searching for stops based on name (fuzzy match) 
+
+For `location_lookup`-function, the names can be misspelled and the function still returns some output. Below is an example how to run the function with four stops using `lapply`.  
+
+```{r, echo = TRUE, eval = FALSE, message = FALSE}
+# not run:
+stop_fuzzy_names <- c("nobeltorget", "skarphagens c", 
+                      "linköping centr", "falla")
+
+# set names to stop_fuzzy_names in order to have named output!
+names(stop_fuzzy_names) <- stop_fuzzy_names           
+
+lapply(X             = platser, 
+       FUN           = location_lookup, 
+       api_key       = your_unique_key,
+       max_locations = 5L)
+```
+
+`location_lookup` has the same limits regarding `max_locations` as `nearby_stops`.
