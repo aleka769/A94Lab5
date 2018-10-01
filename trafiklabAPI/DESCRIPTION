@@ -13,4 +13,5 @@ RoxygenNote: 6.1.0
 Imports: httr, jsonlite
 URL: https://github.com/aleka769/A94Lab5
 BugReports: https://github.com/aleka769/A94Lab5/issues
-Suggests: testthat
+Suggests: testthat, knitr, rmarkdown
+VignetteBuilder: knitr
