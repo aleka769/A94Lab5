@@ -4,7 +4,8 @@
 \alias{location_lookup}
 \title{Function for doing lookup of place-names and return closest matching bus-stops}
 \usage{
-location_lookup(location, api_key, max_locations = 5L)
+location_lookup(location, api_key = Sys.getenv("trafiklab_key"),
+  max_locations = 5L)
 }
 \arguments{
 \item{location}{String to search for.}

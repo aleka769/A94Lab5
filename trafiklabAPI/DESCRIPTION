@@ -1,10 +1,10 @@
 Package: trafiklabAPI
-Title: API to Trafiklab.se nearby stops and stop search.
+Title: API to Trafiklab.se nearby stops and stop search
 Version: 0.0.0.9000
 Authors@R: c(person("Gustav", "Lundberg", email = "guslu389@student.liu.se",role = c("aut")),
   person("Faton", "Rekathati", email = "fatre714@student.liu.se", role = c("aut")),
   person("Alexander", "Karlsson", email = "aleka769@student.liu.se", role = c("aut", "cre")))
-Description: A number of functions to access specific parts of the trafiklab.se API. Currently searcing for bus-stops close to coordinates and partialy matching names is available
+Description: A number of functions to access specific parts of the trafiklab.se API. Currently searcing for bus-stops close to coordinates and partialy matching names is available.
 Depends: R (>= 3.4.2)
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -13,3 +13,4 @@ RoxygenNote: 6.1.0
 Imports: httr, jsonlite
 URL: https://github.com/aleka769/A94Lab5
 BugReports: https://github.com/aleka769/A94Lab5/issues
+Suggests: testthat

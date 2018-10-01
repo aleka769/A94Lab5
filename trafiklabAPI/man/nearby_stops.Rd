@@ -4,8 +4,8 @@
 \alias{nearby_stops}
 \title{Function for retrieving stops close to given coordinates}
 \usage{
-nearby_stops(longitude, latitude, api_key, radius = 1000,
-  max_locations = 5L)
+nearby_stops(longitude, latitude, api_key = Sys.getenv("trafiklab_key"),
+  radius = 1000, max_locations = 5L)
 }
 \arguments{
 \item{longitude}{Longitude coordinate according to WGS84-system}
@@ -26,6 +26,9 @@ data.frame with stop-Id, extId, name, longitude and latitude (WGS84),
 }
 \description{
 Function for retrieving stops close to given coordinates
+}
+\examples{
+head(nearby_stops(16.017, 58.571, radius = 2000))
 }
 \references{
 https://www.trafiklab.se/api/resrobot-reseplanerare/narliggande-hallplatser
