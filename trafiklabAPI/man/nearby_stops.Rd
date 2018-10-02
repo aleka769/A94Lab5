@@ -4,8 +4,9 @@
 \alias{nearby_stops}
 \title{Function for retrieving stops close to given coordinates}
 \usage{
-nearby_stops(longitude, latitude, api_key = Sys.getenv("trafiklab_key"),
-  radius = 1000, max_locations = 5L)
+nearby_stops(longitude, latitude,
+  api_key = "4f5c437f-3a02-4c5d-bfbb-f2fe042569ba", radius = 1000,
+  max_locations = 5L)
 }
 \arguments{
 \item{longitude}{Longitude coordinate according to WGS84-system}

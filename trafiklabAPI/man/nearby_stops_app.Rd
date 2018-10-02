@@ -6,9 +6,6 @@
 \usage{
 nearby_stops_app()
 }
-\value{
-nothing...
-}
 \description{
 Function for running shiny app based on nearby stops API
 }

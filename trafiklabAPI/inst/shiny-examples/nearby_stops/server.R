@@ -2,7 +2,18 @@
 server <- (function(input, output) {
   requireNamespace("leaflet")
   requireNamespace("magrittr")
-
+  hecrodIcon <- leaflet::makeIcon(
+    iconUrl = system.file("hecrod.png",package="trafiklabAPI"),
+    iconWidth = 40, iconHeight = 40,
+    iconAnchorX = 22, iconAnchorY = 94
+  )
+  
+  krzbarIcon <- leaflet::makeIcon(
+    iconUrl = system.file("krzbar.png",package="trafiklabAPI"),
+    iconWidth = 55, iconHeight = 65,
+    iconAnchorX = 22, iconAnchorY = 94
+  )
+  
   # Waiting for the "update plot" button in shiny app
   observeEvent(input$act, {
     
@@ -12,18 +23,16 @@ server <- (function(input, output) {
       your_loc <<- trafiklabAPI::nearby_stops(longitude = input$lon, 
                                               latitude  = input$lat, 
                                               radius    = isolate(input$r), 
-                                              # api_key   = api_key,
                                               max_locations = isolate(input$no_stops))
       
       # Special icon for 'your location'
-      icon.fa <- leaflet::makeAwesomeIcon(icon = 'flag', spin = FALSE, library = "fa",
+      icon.fa <- leaflet::makeAwesomeIcon(icon = krzbarIcon, spin = TRUE, library = "fa",
                                  markerColor = 'red', iconColor = 'black')
       
       # Draws map from 'your_loc' data.frame and adds special icon
       leaflet::leaflet(your_loc) %>% 
-        leaflet::addMarkers(lng = ~lon, lat = ~lat, label = ~paste0(name," - ",dist,"m")) %>% 
-        leaflet::addAwesomeMarkers(lng = ~input$lon, lat = ~input$lat,
-                          icon = icon.fa) %>%
+        leaflet::addMarkers(lng = ~lon, lat = ~lat, label = ~paste0(name," - ",dist,"m"), icon=hecrodIcon) %>% 
+        leaflet::addMarkers(lng = ~input$lon, lat = ~input$lat, icon=krzbarIcon) %>%
         leaflet::addTiles()
     })
   })
